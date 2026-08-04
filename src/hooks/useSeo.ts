@@ -1,0 +1,3 @@
+import { useEffect } from 'react'
+import type { SiteData } from '../types'
+export function useSeo(seo: SiteData['seo']) { useEffect(() => { document.title = seo.title; const set = (name: string, content: string, property = false) => { let el = document.querySelector(`meta[${property ? 'property' : 'name'}="${name}"]`); if (!el) { el = document.createElement('meta'); el.setAttribute(property ? 'property' : 'name', name); document.head.appendChild(el) } el.setAttribute('content', content) }; set('description', seo.description); set('og:title', seo.title, true); set('og:description', seo.description, true); set('og:type', 'website', true); set('og:image', seo.image, true) }, [seo]) }
